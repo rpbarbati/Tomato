@@ -1,0 +1,10 @@
+{
+    "__Entity__": {
+        "__Name__": "Vehicle",
+        "id": 34,
+        "make": 2,
+        "model": "Camaro",
+        "year": 2014,
+        "miles": 32453
+    }
+}
