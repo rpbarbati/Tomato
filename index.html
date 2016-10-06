@@ -43,8 +43,13 @@
 <a id="tomato-is-here" class="anchor" href="#tomato-is-here" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tomato is here!</h3>
 
 <p>Tomato is the ORM framework for the modern development world. 
-When using Tomato, you will never generate nor write entity classes.  You will not write repository classes.  You will not write service classes.  You will not need to configure a persistence context.  You will not need to work with EntityManager instances.<br>
-And in return, Tomato gives you more performance and more flexibility in less lines of code.  Tomato is also completely thread safe without any modifications - simply ensure each thread uses its own entity instance.  </p>
+When using Tomato, you will never generate nor write entity classes.  You will not write repository classes.  You will not write service classes.  You will not write REST services.  You will not need to configure a persistence context.  You will not need to work with EntityManager instances.<br>
+Tomato gives you more performance and more flexibility in less lines of code and classes.  
+How many less classes - 98% less classes, 98% less code.  Regardless of the number of tables you are accessing, using Tomato, you will use one Entity class and one REST service.  Period.  These 2 classes provide more bang per line of code than Spring Data or other comparable solutions.
+Right out of the box, you can read and write single rows, row sets and data hierarchies to and from tables in any schema knowing nothing more than the schema and table name.
+Tomato is also completely thread safe without any modifications.
+So, no matter how many tables your project accesses, you will have 2 classes doing all the heavy lifting.  That is 98% smaller than any comparable Spring Data based solution, which will have an entity, a repository and a REST service, at a minimum, FOR EACH TABLE.
+</p>
 
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
@@ -57,8 +62,22 @@ And in return, Tomato gives you more performance and more flexibility in less li
 <li>Build the project into a jar file.<br>
 </li>
 <li>Include the jar in the project of your choice.</li>
-<li>Check out the code in the EntityTest.java class.  This includes samples for how to use all of Tomatos functionality.</li>
+<li>Check out the code in the EntityTest.java class.  It includes examples of how to use all Tomato features.</li>
 </ol>
+        
+<h3>
+How easy is it, really?
+Ther following is the code needed to retrieve all records in any table...
+  
+  Entity e = Entity.createEntityOrView("Schema.tableName");
+  e.setFilter("1=1");
+  e.load();
+  
+Want to load a hierarchy, like say, employees and their addresses?  The following will load all employee records with nested addresses under each. 
+  Entity e = Entity.createEntityOrView("Schema.employees");
+  e.setFilter("1=1");
+  e.getChildList().add(new ChildData("schema.address", "address_id", false, false));
+  e.load();
 
 <h3>
 <a id="if-you-are-doing-web-development" class="anchor" href="#if-you-are-doing-web-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>If you are doing web development</h3>
@@ -69,7 +88,7 @@ And in return, Tomato gives you more performance and more flexibility in less li
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
 <p>Tomato was created by Rodney P. Barbati.<br>
-Rodney felt that since we have been reading and writing data from tables for decades, it should be easier.  Now it is. </p>
+Rodney felt that since we have been reading and writing data from tables for decades, using the same boiler plate type code, it should be easier.  Now it is. </p>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
