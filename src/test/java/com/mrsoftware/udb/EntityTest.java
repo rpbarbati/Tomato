@@ -154,48 +154,48 @@ public class EntityTest {
 
     }
 
-    @Test
-    public void testSetDelete() throws Exception {
-        
-//        String sql = "SELECT * FROM address JOIN customer ON customer.address_id = address.address_id WHERE first_name = 'Rodney' AND last_name = 'Barbati'";
+//    @Test
+//    public void testSetDelete() throws Exception {
 //        
-//        SQLEntity se = new SQLEntity("RodneyAddresses", sql);
-        
-        Entity c = Entity.createEntityOrView("sakila.customer", false);
-
-        c.setFilter("first_name = 'Rodney' AND last_name = 'Barbati'");
-
-        
-        
-        c.getChildList().clear();
-                
-        c.getChildList().add(new ChildData("sakila.address", "address_id", false, false));
-
-        c.setDeep(true);
-
-        c.load();       // Load customer rows with embedded addresses
-        
-        c.setDeleted(true); // Prepare to delete entire set and children (all customer records in this set and any related address records)
-        
-        c.save();       // Do the delete
-        
-        // Verify
-        
-        c.load();
-        
-        // Nothing should have loaded
-        
-        assert(!c.isPersisted());
-        
-        Entity address = Entity.createEntityOrView("sakila.address");
-
-        address.setValue("address_id", address_id);
-
-        address.load();
-
-        assert (!address.isPersisted());
-    }
-    
+////        String sql = "SELECT * FROM address JOIN customer ON customer.address_id = address.address_id WHERE first_name = 'Rodney' AND last_name = 'Barbati'";
+////        
+////        SQLEntity se = new SQLEntity("RodneyAddresses", sql);
+//        
+//        Entity c = Entity.createEntityOrView("sakila.customer", false);
+//
+//        c.setFilter("first_name = 'Rodney' AND last_name = 'Barbati'");
+//
+//        
+//        
+//        c.getChildList().clear();
+//                
+//        c.getChildList().add(new ChildData("sakila.address", "address_id", false, false));
+//
+//        c.setDeep(true);
+//
+//        c.load();       // Load customer rows with embedded addresses
+//        
+//        c.setDeleted(true); // Prepare to delete entire set and children (all customer records in this set and any related address records)
+//        
+//        c.save();       // Do the delete
+//        
+//        // Verify
+//        
+//        c.load();
+//        
+//        // Nothing should have loaded
+//        
+//        assert(!c.isPersisted());
+//        
+//        Entity address = Entity.createEntityOrView("sakila.address");
+//
+//        address.setValue("address_id", address_id);
+//
+//        address.load();
+//
+//        assert (!address.isPersisted());
+//    }
+//    
     @Test
     public void testSQLView() throws IOException
     {
@@ -211,4 +211,17 @@ public class EntityTest {
         
         String s = sv.toJSON();
     }
+    
+    @Test
+    public void testSetLoad() throws IOException
+    {
+        Entity e = Entity.createEntityOrView("sakila.rental");
+        
+        e.setFilter("1=1");
+        
+        e.load();
+        
+       assert(e.getChildCount() > 3);
+    }  
+    
 }

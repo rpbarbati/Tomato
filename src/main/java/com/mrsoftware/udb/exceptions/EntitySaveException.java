@@ -2,7 +2,7 @@ package com.mrsoftware.udb.exceptions;
 
 import com.mrsoftware.udb.Entity;
 
-public class EntitySaveException extends UltraDbException {
+public class EntitySaveException extends TomatoException {
 
     public EntitySaveException(Exception e, Entity entity) {
         super(e);

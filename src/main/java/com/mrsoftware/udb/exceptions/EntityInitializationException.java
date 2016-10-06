@@ -1,6 +1,6 @@
 package com.mrsoftware.udb.exceptions;
 
-public class EntityInitializationException extends UltraDbException {
+public class EntityInitializationException extends TomatoException {
 
     public EntityInitializationException(Exception e, String name) {
         super(e);

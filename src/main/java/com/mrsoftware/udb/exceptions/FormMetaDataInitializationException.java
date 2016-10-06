@@ -1,6 +1,6 @@
 package com.mrsoftware.udb.exceptions;
 
-public class FormMetaDataInitializationException extends UltraDbException {
+public class FormMetaDataInitializationException extends TomatoException {
 
     public FormMetaDataInitializationException(Exception e, String name) {
         super(e);

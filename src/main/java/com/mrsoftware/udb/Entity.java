@@ -14,7 +14,7 @@ import com.mrsoftware.udb.exceptions.EntityInitializationException;
 import com.mrsoftware.udb.exceptions.EntityLoadException;
 import com.mrsoftware.udb.exceptions.EntitySaveException;
 import com.mrsoftware.udb.exceptions.FormMetaDataInitializationException;
-import com.mrsoftware.udb.exceptions.UltraDbException;
+import com.mrsoftware.udb.exceptions.TomatoException;
 import com.mrsoftware.udb.exceptions.ViewCreationException;
 import com.mrsoftware.udb.keyhandlers.ForeignKey;
 import com.mrsoftware.udb.meta.ChildList;
@@ -128,7 +128,7 @@ public class Entity implements Iterable<Entity> {
             if (!childList.isInitialized()) {
                 initializeChildList();
             }
-        } catch (UltraDbException e) {
+        } catch (TomatoException e) {
             throw new EntityInitializationException(e, getName());
         }
     }
@@ -244,6 +244,7 @@ public class Entity implements Iterable<Entity> {
                     e.setChildList(getChildList());
 
                     e.setDeep(isDeep());
+                    e.setModel(isModel());
 
                     e.processRow(row);
 
@@ -658,6 +659,8 @@ public class Entity implements Iterable<Entity> {
 
             setDeep(true);
         }
+        
+//        entity.setModel(isModel());
 
         entity.setParent(this);
     }
@@ -770,15 +773,19 @@ public class Entity implements Iterable<Entity> {
 
             suppressComma();
 
-            // Output control values
-            println("\"__persisted\": " + isPersisted);
-            println("\"__deleted\": " + isDeleted);
-            println("\"__dirty\": " + isDirty);
-            println("\"__deep\": " + isDeep);
-            println("\"__set\": " + isArray());
-            println("\"__filter\": " + ((filter != null) ? "\"" + filter + "\"" : filter));
-            println("\"__model\": " + isModel);
+            if (!isModel)
+            {
+                // Output control values
 
+                println("\"__persisted\": " + isPersisted);
+                println("\"__deleted\": " + isDeleted);
+                println("\"__dirty\": " + isDirty);
+                println("\"__deep\": " + isDeep);
+                println("\"__set\": " + isArray());
+                println("\"__filter\": " + ((filter != null) ? "\"" + filter + "\"" : filter));
+                println("\"__model\": " + isModel);
+            }
+            
             if (isArray()) {
                 println("\"__elements\": [", false);
 
@@ -930,7 +937,9 @@ public class Entity implements Iterable<Entity> {
 
     public void setFilter(String filter) {
         this.filter = filter;
-
+        
+        // Prepare to load a set
+        isArray(filter != null);
     }
 
     public String getFilter() {

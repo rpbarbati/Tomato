@@ -2,7 +2,7 @@ package com.mrsoftware.udb.meta;
 
 import com.mrsoftware.udb.Entity;
 import com.mrsoftware.udb.exceptions.EntityLoadException;
-import com.mrsoftware.udb.exceptions.UltraDbException;
+import com.mrsoftware.udb.exceptions.TomatoException;
 import com.mrsoftware.udb.keyhandlers.ForeignKey;
 
 public class ChildData {
@@ -49,7 +49,7 @@ public class ChildData {
             if (child.isPersisted()) {
                 entity.add(child);
             }
-        } catch (UltraDbException e) {
+        } catch (TomatoException e) {
             throw new EntityLoadException(e, entity.getName());
         }
     }

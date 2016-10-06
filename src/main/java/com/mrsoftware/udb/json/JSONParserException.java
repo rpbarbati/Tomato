@@ -5,13 +5,13 @@
  */
 package com.mrsoftware.udb.json;
 
-import com.mrsoftware.udb.exceptions.UltraDbException;
+import com.mrsoftware.udb.exceptions.TomatoException;
 
 /**
  *
  * @author NewRodney
  */
-public class JSONParserException extends UltraDbException {
+public class JSONParserException extends TomatoException {
    
     public JSONParserException(Exception cause, String ... msgs)
     {
