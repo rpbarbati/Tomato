@@ -75,13 +75,13 @@ So, no matter how many tables your project accesses, you will have 2 classes doi
   e.load();
 </p>  
 
-<p>Want to load a hierarchy, like say, employees and their addresses?  The following will load all employee records with nested addresses under each. 
-        </p><p>
-        Entity e = Entity.createEntityOrView("Schema.employees");
-  e.setFilter("1=1");
-  e.getChildList().add(new ChildData("schema.address", "address_id", false, false));
-  e.load();
-        </p>  
+<p>Want to load a hierarchy, like say, employees and their addresses?  The following will load all employee records with nested addresses under each. </p>
+          <ol>
+            <li>Entity e = Entity.createEntityOrView("Schema.employees");</li>
+            <li>e.setFilter("1=1");</li>
+            <li>e.getChildList().add(new ChildData("schema.address", "address_id", false, false));</li>
+            <li>e.load();</li>
+        </ol>
  
 
 <h3>
