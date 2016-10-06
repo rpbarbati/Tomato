@@ -85,11 +85,11 @@ The following is the code needed to retrieve all records in any table...
 
 Want to load and save a hierarchy?  Like say, employees and their addresses?  The following will load all employee records with nested addresses under each.
 
-        Entity e = Entity.createEntityOrView("schema.employee");
-        e.setFilter("1=1");
-		ChildData cd = new ChildData("schema.address", "address_id", false, false);
-        e.getChildList().add(cd);
-        e.load();
+    Entity e = Entity.createEntityOrView("schema.employee");
+    e.setFilter("1=1");
+    ChildData cd = new ChildData("schema.address", "address_id", false, false);
+    e.getChildList().add(cd);
+    e.load();
 
 <h3>Are you building web forms for your data?</h3>
 If so, you might want to download Tomato's companion project, Basil.  Basil provides dynamic forms and tables for any Tomato entity instance.  
@@ -104,11 +104,11 @@ He felt that since we have been reading and writing data from tables for decades
 <h3>Support or Contact</h3>
 Feel free to contact me with questions, feature requests or just to let me know how Tomato is working for you!
 <a href="mailto:rodney.barbati@gmail.com">rodney.barbati@gmail.com
-
+    </section>
 <footer>
 	Project maintained by <a href="https://github.com/rpbarbati">rpbarbati</a>
 	<small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small>
 </footer>
-    </section>
+
   </body>
 </html>
