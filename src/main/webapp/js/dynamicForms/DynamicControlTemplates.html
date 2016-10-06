@@ -1,0 +1,70 @@
+<div ng-switch on="fieldData.input">
+
+    <div ng-switch-when="textarea">
+        <textarea 
+            name="textarea" 
+            rows="{{fieldData.rows}}" 
+            cols="{{fieldData.displaywidth}}" 
+            ng-model="entity[fieldData.name]" 
+            >
+        </textarea>
+    </div>
+
+    <div ng-switch-when="combobox">
+        <dynamic-combo-box></dynamic-combo-box>
+
+        <!--        <select 
+    ng-model="entity[fieldData.name]"
+                >
+
+    <option ng-repeat="item in formSchema.valueLists[fieldData.valuelist]" value="{{item.id}}">{{item.value}}</option>
+
+</select>
+        -->
+    </div>
+
+    <div ng-switch-when="calculated">
+        {{evaluateExpression(entity, fieldData.expression)}}
+    </div>
+
+    <div ng-switch-when="custom">
+
+        <div dynamic="fieldData.content"></div>
+
+    </div>
+
+    <div ng-switch-when="date">
+        <input 
+            type="text" 
+            ng-model="entity[fieldData.name]" 
+            size="{{fieldData.width}}"
+            ng-disabled="{{disabled}}"
+            datetime="yyyy-MM-dd"
+            />
+    </div>
+
+
+    <div ng-switch-when="datetime-local">
+        <input 
+            type="text" 
+            ng-model="entity[fieldData.name]" 
+            size="{{fieldData.width}}"
+            ng-disabled="{{disabled}}"
+            datetime="yyyy-MM-dd HH:mm:ss"
+            />
+    </div>
+
+
+    <div ng-switch-default>
+        <input 
+            type="{{fieldData.input}}" 
+            ng-model="entity[fieldData.name]" 
+            size="{{fieldData.width}}"
+            ng-disabled="{{disabled}}"
+            />
+    </div>
+
+    <!--value: {{entity[fieldData.name]}}-->
+
+</div>
+

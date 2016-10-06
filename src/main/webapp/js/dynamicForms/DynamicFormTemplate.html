@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+
+	<div class="panel-header">{{name}}</div>
+
+	<div >
+		<div ng-repeat="fieldData in formSchema.formMetaData">
+        
+			<label>{{fieldData.label}}</label>		
+
+			<div ng-include src="'js/dynamicForms/DynamicControlTemplates.html'"></div>
+
+		</div>
+	</div>
+</div>
+
+

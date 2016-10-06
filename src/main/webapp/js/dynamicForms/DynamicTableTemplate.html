@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+
+    <table>
+
+        <tr>
+            <td>X</td>
+            <td ng-repeat="fieldData in formSchema.formMetaData">{{(fieldData.label) ? fieldData.label : fieldData.name}}</td>
+        </tr>
+
+        <tr ng-repeat="entity in entityInstances">
+
+            <td><input type="checkBox" ng-init="entity.__Selected = false" ng-model="entity.__Selected"/></td> 			
+            <td ng-repeat="fieldData in formSchema.formMetaData" ng-include src="'js/dynamicForms/DynamicControlTemplates.html'"></td>
+        </tr>
+
+    </table>
+    <input type="button" value="Delete" ng-click="deleteSelectedRows()"/>
+    <input type="button" value="Add" ng-click="addTableRow()"/>
+    <input type="button" value="Commit" ng-click="commitChanges()"/>
+    <input type="button" value="Select" ng-click="selectRow()" ng-if="select"/>
+</div>
+

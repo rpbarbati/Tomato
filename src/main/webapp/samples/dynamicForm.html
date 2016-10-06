@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Dynamic Samples</title>
+    </head>
+    
+    <body>
+        <div>Samples - Dynamic Entity</div>
+        
+        <div ng-app="DynamicForms">
+             <dynamic-entity name="sakila.customer" deep="false" keys="{'customer_id': 6}">
+
+                 <dynamic-form name="sakila.customer" path="sakila.customer"></dynamic-form>
+
+
+            </dynamic-entity>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        
+        <script src="../js/dynamicForms/DynamicForms.js"></script>
+
+        <script src="../js/dynamicForms/DynamicDataFactory.js"></script>
+
+        <script src="../js/dynamicForms/EntityServices.js"></script>
+        <script src="../js/dynamicForms/FormMetaDataService.js"></script>
+
+        <script src="../js/dynamicForms/DynamicEntityDirective.js"></script>
+
+        <script src="../js/dynamicForms/DynamicFormDirective.js"></script>
+
+    </body>
+    
+</html>

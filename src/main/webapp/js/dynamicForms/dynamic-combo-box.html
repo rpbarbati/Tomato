@@ -1,0 +1,7 @@
+<select 
+	ng-model="entity[fieldData.name]"
+	>
+
+	<option ng-repeat="item in listItems" selected="{{item.item_id = entity[fieldData.name]}}" value="{{item.item_id}}">{{item.name}}</option>
+
+</select>
