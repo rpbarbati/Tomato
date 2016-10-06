@@ -65,9 +65,9 @@ So, no matter how many tables your project accesses, you will have 2 classes doi
 <li>Check out the code in the EntityTest.java class.  It includes examples of how to use all Tomato features.</li>
 </ol>
         
-<h3>
-How easy is it, really?
-Ther following is the code needed to retrieve all records in any table...
+<h3>How easy is it, really?</h3>
+<p>
+  The following is the code needed to retrieve all records in any table...
   
   Entity e = Entity.createEntityOrView("Schema.tableName");
   e.setFilter("1=1");
@@ -78,6 +78,8 @@ Want to load a hierarchy, like say, employees and their addresses?  The followin
   e.setFilter("1=1");
   e.getChildList().add(new ChildData("schema.address", "address_id", false, false));
   e.load();
+        </p>  
+ 
 
 <h3>
 <a id="if-you-are-doing-web-development" class="anchor" href="#if-you-are-doing-web-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>If you are doing web development</h3>
