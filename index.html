@@ -34,9 +34,20 @@
           <h3>
 <a id="tomato-is-here" class="anchor" href="#tomato-is-here" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tomato is here!</h3>
 
-<p>Tomato is the ORM framework for the modern development world. 
-When using Tomato, you will never generate nor write entity classes.  You will not write repository classes.  You will not write service classes.  You will not need to configure a persistence context.  You will not need to work with EntityManager instances.<br>
-And in return, Tomato gives you more performance and more flexibility in less lines of code.  Tomato is also completely thread safe without any modifications - simply ensure each thread uses its own entity instance.  </p>
+#**Tomato is the ORM framework for the modern development world.** 
+
+###When using Tomato...
+ - you will never generate nor write entity classes. 
+ -  You will not write repository classes.  
+ - You will not write service classes.  
+ - You will not need to configure a persistence context.  
+ - You will not need to work with EntityManager instances.
+
+###Tomato reduces the size and complexity of your data access code by at least 98%.
+ - Check out the examples below to see actual Tomato code used to load data.  
+ - Notice that there are no custom artifacts that Spring Data has you create for every table or view you want to access?
+ - Tomato is also completely thread safe without any modifications
+ - Tomato is a great choice for embedded systems - nothing is smaller or faster
 
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
@@ -52,32 +63,39 @@ And in return, Tomato gives you more performance and more flexibility in less li
 <li>Check out the code in the EntityTest.java class.  This includes samples for how to use all of Tomatos functionality.</li>
 </ol>
 
-<h2>
-<a id="how-easy-is-it-really" class="anchor" href="#how-easy-is-it-really" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How easy is it, really?</h2>
+##How easy is it, really?
 
-<p>The following is the code needed to retrieve all records in any table... 
-Entity e = Entity.createEntityOrView("Schema.tableName"); 
-e.setFilter("1=1"); 
-e.load(); </p>
+The following is the code needed to retrieve all records in any table... 
 
-<p>Want to load and save a hierarchy? Like say, employees and their addresses? The following will load all employee records with nested addresses under each. Entity e = Entity.createEntityOrView("schema.employee"); e.setFilter("1=1"); ChildData cd = new ChildData("schema.address", "address_id", false, false); e.getChildList().add(cd); e.load();</p>
+    Entity e = Entity.createEntityOrView("Schema.tableName"); 
+    e.setFilter("1=1"); 
+    e.load(); 
 
-<h3>
-<a id="if-you-are-doing-web-development" class="anchor" href="#if-you-are-doing-web-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>If you are doing web development</h3>
 
-<p>You can also download the companion project Basil.   Basil provides dynamic forms and tables for any Tomato entity instance.  Basil is written in Angular 1.5 and provides for simply injection of custom HTML where ever needed in a dynamic form or table.</p>
+Want to load and save a hierarchy? Like say, employees and their addresses? The following will load all employee records with nested addresses under each. 
+
+    Entity e = Entity.createEntityOrView("schema.employee"); 
+    e.setFilter("1=1"); 
+    ChildData cd = new ChildData("schema.address", "address_id", false, false); 
+    e.getChildList().add(cd); 
+    e.load();
+
+###Are you doing web form development?
+You can also download the companion project Basil.   Basil provides dynamic forms and tables for any Tomato entity instance.  Basil is written in Angular 1.5 and provides for simply injection of custom HTML where ever needed in a dynamic form or table.
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
 <p>Tomato was created by Rodney P. Barbati.<br>
-Rodney felt that since we have been reading and writing data from tables for decades, it should be easier.  Now it is. </p>
+He has felt that since we have been reading and writing data from tables for decades, it should be easier.  Now it is. </p>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
 
 <p>Feel free to contact me with questions, feature requests or just to let me know how Tomato is working for you!<br>
 <a href="mailto:rodney.barbati@gmail.com">rodney.barbati@gmail.com</a>.</p>
+
+
         </section>
 
         <footer>
