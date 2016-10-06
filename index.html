@@ -41,15 +41,33 @@
       <section>
         <h3>
 <a id="tomato-is-here" class="anchor" href="#tomato-is-here" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tomato is here!</h3>
+      </section>   
+<h1>Tomato is here!</h1>
 
-<p>Tomato is the ORM framework for the modern development world. 
-When using Tomato, you will never generate nor write entity classes.  You will not write repository classes.  You will not write service classes.  You will not write REST services.  You will not need to configure a persistence context.  You will not need to work with EntityManager instances.<br>
-Tomato gives you more performance and more flexibility in less lines of code and classes.  
-How many less classes - 98% less classes, 98% less code.  Regardless of the number of tables you are accessing, using Tomato, you will use one Entity class and one REST service.  Period.  These 2 classes provide more bang per line of code than Spring Data or other comparable solutions.
-Right out of the box, you can read and write single rows, row sets and data hierarchies to and from tables in any schema knowing nothing more than the schema and table name.
-Tomato is also completely thread safe without any modifications.
-So, no matter how many tables your project accesses, you will have 2 classes doing all the heavy lifting.  That is 98% smaller than any comparable Spring Data based solution, which will have an entity, a repository and a REST service, at a minimum, FOR EACH TABLE.
-</p>
+**Tomato is the ORM framework for the modern development world.**
+=============================================================
+
+
+----------
+
+Tomato does more in less time and less code than Spring Data.
+-------
+
+ - When using Tomato... 
+	 - you will not generate nor write entity classes.  
+	 - You will not write repository classes.  
+	 - You will not write service classes.
+	 - You will not write REST services. 
+	 - You will not need to configure a persistence context. 
+	 - You will not need to work with EntityManager instances.
+	 - You will not need to annotate your code
+
+ - Using Tomato will reduce the size and complexity of your data accessing code by at least 98%.  
+- An Entity and a REST service, both provided right out of the box, are all that you need to access any table in any schema, faster and with more flexibility than Spring Data.
+- Spring Data requires Controllers, Repositories, services and entities for every table or view you want to access.
+
+*Tomato is also completely thread safe without any modifications.
+* Tomato is a great solution for embedded systems - you won't find anything smaller and faster!
 
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
@@ -62,51 +80,43 @@ So, no matter how many tables your project accesses, you will have 2 classes doi
 <li>Build the project into a jar file.<br>
 </li>
 <li>Include the jar in the project of your choice.</li>
-<li>Check out the code in the EntityTest.java class.  It includes examples of how to use all Tomato features.</li>
+<li>Look below for sample code showing how to use Tomato, or check out the code in the EntityTest.java class for examples of all of Tomatos features.
+</li>
 </ol>
         
 <h3>How easy is it, really?</h3>
-<p>
-  The following is the code needed to retrieve all records in any table...
-        </p>
-        <p>  
-  Entity e = Entity.createEntityOrView("Schema.tableName");
-  e.setFilter("1=1");
-  e.load();
-</p>  
+The following is the code needed to retrieve all records in any table...
 
-<p>Want to load a hierarchy, like say, employees and their addresses?  The following will load all employee records with nested addresses under each. </p>
-          <ol>
-            <li>Entity e = Entity.createEntityOrView("Schema.employees");</li>
-            <li>e.setFilter("1=1");</li>
-            <li>e.getChildList().add(new ChildData("schema.address", "address_id", false, false));</li>
-            <li>e.load();</li>
-        </ol>
- 
+     Entity e = Entity.createEntityOrView("Schema.tableName");
+      e.setFilter("1=1");
+      e.load();
 
-<h3>
-<a id="if-you-are-doing-web-development" class="anchor" href="#if-you-are-doing-web-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>If you are doing web development</h3>
+Want to load and save a hierarchy?  Like say, employees and their addresses?  The following will load all employee records with nested addresses under each.
 
-<p>You can also download the companion project Basil.   Basil provides dynamic forms and tables for any Tomato entity instance.  Basil is written in Angular 1.5 and provides for simply injection of custom HTML where ever needed in a dynamic form or table.</p>
+        Entity e = Entity.createEntityOrView("schema.employee");
+        e.setFilter("1=1");
+		ChildData cd = new ChildData("schema.address", "address_id", false, false);
+        e.getChildList().add(cd);
+        e.load();
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h3>Are you building web forms for your data?</h3>
+If so, you might want to download Tomato's companion project, Basil.  Basil provides dynamic forms and tables for any Tomato entity instance.  
+Basil is written in Angular 1.5, and was designed for ease of customization.  It supports injection of custom HTML anywhere needed inside a dynamically generated form or table.
+Using Basil, you can present an HTML table displaying all the rows in a given table, and which supports Adding, Editing and Deleting rows from that table, in 3 lines of HTML, inclusive - no custom code is needed on the server at all. 
+See Basil at : https://rpbarbati.github.io/Basil
 
-<p>Tomato was created by Rodney P. Barbati.<br>
-Rodney felt that since we have been reading and writing data from tables for decades, using the same boiler plate type code, it should be easier.  Now it is. </p>
+<h3>Author and Contributors</h3>
+Tomato was initially created by Rodney P. Barbati in 2016.
+He felt that since we have been reading and writing data from tables for decades, using the same boiler plate type code, it should be easier.  Now it is!
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<h3>Support or Contact</h3>
+Feel free to contact me with questions, feature requests or just to let me know how Tomato is working for you!
+<a href="mailto:rodney.barbati@gmail.com">rodney.barbati@gmail.com
 
-<p>Feel free to contact me with questions, feature requests or just to let me know how Tomato is working for you!<br>
-<a href="mailto:rodney.barbati@gmail.com">rodney.barbati@gmail.com</a>.</p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/rpbarbati">rpbarbati</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+<footer>
+	Project maintained by <a href="https://github.com/rpbarbati">rpbarbati</a>
+	<small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small>
+</footer>
     
   </body>
 </html>
