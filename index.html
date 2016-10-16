@@ -36,7 +36,7 @@
 
 #**Tomato is the ORM framework for the modern development world.** 
 
-###When using Tomato...
+###When using Tomato... 
  - you will never generate nor write entity classes. 
  -  You will not write repository classes.  
  - You will not write service classes.  
@@ -63,15 +63,15 @@
 <li>Check out the code in the EntityTest.java class.  This includes samples for how to use all of Tomatos functionality.</li>
 </ol>
 
-##How easy is it, really?
-
+          <h3>easy is it, really?</h3>
+<div>
 The following is the code needed to retrieve all records in any table... 
 
     Entity e = Entity.createEntityOrView("Schema.tableName"); 
     e.setFilter("1=1"); 
     e.load(); 
-
-
+          </div><p>
+<div>
 Want to load and save a hierarchy? Like say, employees and their addresses? The following will load all employee records with nested addresses under each. 
 
     Entity e = Entity.createEntityOrView("schema.employee"); 
@@ -79,9 +79,10 @@ Want to load and save a hierarchy? Like say, employees and their addresses? The 
     ChildData cd = new ChildData("schema.address", "address_id", false, false); 
     e.getChildList().add(cd); 
     e.load();
-
-###Are you doing web form development?
-You can also download the companion project Basil.   Basil provides dynamic forms and tables for any Tomato entity instance.  Basil is written in Angular 1.5 and provides for simply injection of custom HTML where ever needed in a dynamic form or table.
+          </div>
+  
+          <h3> you doing web form development?</h3>
+an also download the companion project Basil.   Basil provides dynamic forms and tables for any Tomato entity instance.  Basil is written in Angular 1.5 and provides for simply injection of custom HTML where ever needed in a dynamic form or table.
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
