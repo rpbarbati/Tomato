@@ -68,11 +68,11 @@
 The following is the code needed to retrieve all records in any table... 
           </div>
 ```
-    Entity e = Entity.createEntityOrView("Schema.tableName"); 
+    Entity e = Entity.createEntityOrView("Schema.tableName"); <p>
     e.setFilter("1=1"); 
     e.load(); 
 ```
-          </div><p>
+          
 <div>
 Want to load and save a hierarchy? Like say, employees and their addresses? The following will load all employee records with nested addresses under each. 
 ```
