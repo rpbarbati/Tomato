@@ -31,9 +31,7 @@
         <hr>
 
         <section id="main_content">
-          <h3>
-<a id="tomato-is-here" class="anchor" href="#tomato-is-here" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tomato is here!</h3>
-
+      
 <h3>Tomato is the ORM framework for the modern development world.</h3> 
 
 <ol>When using Tomato... 
@@ -53,7 +51,9 @@
  <li>Tomato is also completely thread safe without any modifications
  <li>Tomato is a great choice for embedded systems - nothing is smaller or faster
   </ol>
-
+        </section>
+          
+          
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
@@ -80,16 +80,16 @@ The following is the code needed to retrieve all records in any table...
           
 <div>
 Want to load and save a hierarchy? Like say, employees and their addresses? The following will load all employee records with nested addresses under each. 
-```
+
     Entity e = Entity.createEntityOrView("schema.employee"); 
     e.setFilter("1=1"); 
     ChildData cd = new ChildData("schema.address", "address_id", false, false); 
     e.getChildList().add(cd); 
     e.load();
           </div>
-```
+
   
-          <h3> you doing web form development?</h3>
+          <h3>Are you doing web form development?</h3>
 an also download the companion project Basil.   Basil provides dynamic forms and tables for any Tomato entity instance.  Basil is written in Angular 1.5 and provides for simply injection of custom HTML where ever needed in a dynamic form or table.
 
 <h3>
