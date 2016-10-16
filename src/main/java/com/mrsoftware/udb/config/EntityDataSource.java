@@ -149,6 +149,11 @@ public class EntityDataSource {
         return retval;
     }
 
+    public boolean enableOverrides()
+    {
+        return false;
+    }
+    
     public String getMetaSchema() {
         return "sakila";
     }

@@ -30,6 +30,18 @@ Set __deleted to true, set __dirty to true then call save().  If the resulting e
 
 See the EntityTest.java file for syntax for loading and saving single entities and hierarchies.  
 
+To create and use Views - for data hierarchies, special handling, etc.
+
+Create a package for the schema which will contain the views you are going to create.  This package must be under the com.mrsoftware.udb.views package.  The project
+already has two such packages for examples of creating and using views - check out the classes in them.
+
+To create a view, simply call Entity.createEntityOrView("schema.ViewNameHere").  That's it.
+
+If you have defined child entities for a view, set __deep to true if you want the entity to load and save its children when it is loaded or saved.  This is not like spring where
+where you will always have to be aware of the children of a JPA entity.  In Tomato, an entity could have 50 child tables, and when __deep is set to false, 
+it basically acts like it doesn't have any.  When __deep is true, it will load and save all 50 (depending on the value of __dirty in each child).
+
+
 I hope you like using Tomato!
 
 Please feel free to contact me if you run into difficulties.

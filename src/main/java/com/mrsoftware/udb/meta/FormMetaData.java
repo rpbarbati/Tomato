@@ -72,56 +72,59 @@ public class FormMetaData extends DbMetaData {
         // View values override default values 
 
         // Be aware that virtual columns can be added via this mechanism
-        String sql
-                = "SELECT "
-                + "     * "
-                + "FROM "
-                + EntityDataSource.getInstance().getMetaSchema() + ".FormMetaData "
-                + "WHERE "
-                + "     LOWER(schemaTable) = '" + instance.getName().toLowerCase() + "' "
-                + "     AND LOWER(viewName) = '" + instance.getViewName().toLowerCase() + "' "
-                + "ORDER BY "
-                + "     CASE WHEN LOWER(viewName) = LOWER(schemaTable) THEN 0 ELSE 1 END, "
-                + "     columnName";
+        if (EntityDataSource.getInstance().enableOverrides())
+        {
+            String sql
+                    = "SELECT "
+                    + "     * "
+                    + "FROM "
+                    + EntityDataSource.getInstance().getMetaSchema() + ".FormMetaData "
+                    + "WHERE "
+                    + "     LOWER(schemaTable) = '" + instance.getName().toLowerCase() + "' "
+                    + "     AND LOWER(viewName) = '" + instance.getViewName().toLowerCase() + "' "
+                    + "ORDER BY "
+                    + "     CASE WHEN LOWER(viewName) = LOWER(schemaTable) THEN 0 ELSE 1 END, "
+                    + "     columnName";
 
-        ArrayList<LowerCaseMap> rows = EntityDataSource.getInstance().executeQuery(sql);
+            ArrayList<LowerCaseMap> rows = EntityDataSource.getInstance().executeQuery(sql);
 
-//		try (
-//			Connection connection = EntityDataSource.getInstance().getConnection();
-//
-//			Statement s = connection.createStatement();
-//
-//			ResultSet rs = s.executeQuery(sql);
-//		)
-        try {
+    //		try (
+    //			Connection connection = EntityDataSource.getInstance().getConnection();
+    //
+    //			Statement s = connection.createStatement();
+    //
+    //			ResultSet rs = s.executeQuery(sql);
+    //		)
+            try {
 
-            ColumnData cd = null;
+                ColumnData cd = null;
 
-//			while (rowss.next())
-            for (LowerCaseMap row : rows) {
-                String columnName = row.getString("columnName");
+    //			while (rowss.next())
+                for (LowerCaseMap row : rows) {
+                    String columnName = row.getString("columnName");
 
-                cd = columns.get(columnName);
+                    cd = columns.get(columnName);
 
-                if (cd == null || !cd.getName().equalsIgnoreCase(columnName)) {
-                    if (cd == null) {
-                        // Add a virtual ColumnData
-                        cd = new ColumnData(columnName);
+                    if (cd == null || !cd.getName().equalsIgnoreCase(columnName)) {
+                        if (cd == null) {
+                            // Add a virtual ColumnData
+                            cd = new ColumnData(columnName);
 
-                        add(cd);
+                            add(cd);
+                        }
                     }
+
+                    // Add all the key/values to it
+                    cd.addValue((String) row.get("label"), row.get("value"));
                 }
-
-                // Add all the key/values to it
-                cd.addValue((String) row.get("label"), row.get("value"));
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new FormMetaDataInitializationException(e, instance.getViewName());
             }
-
-            // Now that we have all the overrides, we can create key columns 
-            createKeyColumnList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new FormMetaDataInitializationException(e, instance.getViewName());
         }
+        
+        // Now that we have all the overrides (or none if not enabled), we can create key columns 
+        createKeyColumnList();
     }
 
     /**

@@ -14,7 +14,7 @@ public class StaffRentalsView extends View {
     public void initializeChildList() {
         super.initializeChildList();
 
-        // Add an address table record using the address_id as its foreign key
+        // Add the rental table as a child set (using a condition)
         childList.add(new ChildData("sakila.rental", "staff_id", false, true, "customer_id = 77"));
     }
 }
