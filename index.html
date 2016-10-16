@@ -55,8 +55,6 @@
           <br>Tomato provides the only Entity class you need, as well as the only REST service you need to do all your database work.<p>
           
 <ul>          
- <li>Check out the examples below to see actual Tomato code used to load data.  
- <li>Notice that there are no custom artifacts that Spring Data has you create for every table or view you want to access?
  <li>Tomato is also completely thread safe without any modifications
  <li>Tomato is a great choice for embedded systems - nothing is smaller or faster
   </ul>
@@ -81,11 +79,11 @@ Getting Started!
 <div>
 The following is the code needed to retrieve all records in any table... 
           </div>
-```
-    Entity e = Entity.createEntityOrView("Schema.tableName"); <p>
-    e.setFilter("1=1"); 
-    e.load(); 
-```
+
+        <div>Entity e = Entity.createEntityOrView("Schema.tableName"); </div>
+    <div>e.setFilter("1=1");  </div>
+    <div>e.load();  </div>
+
           
 <div>
 Want to load and save a hierarchy? Like say, employees and their addresses? The following will load all employee records with nested addresses under each. 
